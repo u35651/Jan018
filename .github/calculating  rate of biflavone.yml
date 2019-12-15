@@ -1,0 +1,35 @@
+name: calculating  rate of biflavone
+on: [push] To compile with the Intel(R) C++ Compiler with Intel(R) MKL library
+
+jobs: Matrix Multiplication for calculating rate of biflavone
+build:git clone https://github.com/intel/HPCKit-code-samples.git
+  cd HPCKit-code-samples/matrix_mul/
+  #!/bin/bash
+source /opt/intel/inteloneapi/setvars.sh > /dev/null 2>&1
+
+make build_dpcpp
+make build_omp
+make build_mkl
+  #!/bin/bash
+source /opt/intel/inteloneapi/setvars.sh > /dev/null 2>&1
+make run_dpcpp
+make run_omp
+make run_mkl
+qsub -l nodes=1:gpu:ppn=2 -d . build.c009.sh
+watch -n 1 qstat -n -1
+qsub -l nodes=1:gpu:ppn=2 -d . run.c009.sh
+cat run.sh.u35651
+cat run.sh.u35651
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run a one-line script
+      run: echo Hello, world!
+    - name: Run a multi-line script
+      run: rm build.sh.*; rm run.sh.*; make clean
+        echo Add other actions to build,
+        echo test, and deploy your project.
+        exit
+
+
